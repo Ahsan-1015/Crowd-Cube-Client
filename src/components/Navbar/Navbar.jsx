@@ -4,6 +4,7 @@ import { authContext } from '../AuthProvider/AuthProvider';
 import { MdLogout } from 'react-icons/md';
 import { HiOutlineLogin } from 'react-icons/hi';
 import 'animate.css';
+import '../Navbar/Navbar.css';
 
 const navUrl = isLoggedIn => (
   <>
@@ -36,7 +37,7 @@ const Navbar = () => {
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   return (
-    <div className="bg-[#76ABAE] text-white shadow-md">
+    <div className="bg-[#76ABAE] bg-navbar text-white shadow-md">
       {/* Navbar container */}
       <div className="w-11/12 2xl:w-10/12 max-w-[2500px] mx-auto flex items-center justify-between py-3">
         {/* Hamburger Menu (sm & md only) */}

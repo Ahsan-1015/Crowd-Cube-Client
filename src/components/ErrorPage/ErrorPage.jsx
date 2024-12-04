@@ -28,7 +28,7 @@ const ErrorPage = () => {
           404 - Page Not Found
         </h1>
         <p className="text-lg mt-4 text-gray-700" data-aos="fade-up">
-          Sorry, we couldn't find the page{' '}
+          Sorry, we could not find the page{' '}
           <strong className="text-gray-900">{location.pathname}</strong>.
         </p>
         <a

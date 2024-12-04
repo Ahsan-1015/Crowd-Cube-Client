@@ -36,11 +36,11 @@ const router = createBrowserRouter([
             <Home />
           </>
         ),
-        // loader: async () => {
-        //   const campaignsRes = await fetch('/campaign.json');
-        //   const campaignsData = await campaignsRes.json();
-        //   return { campaignsData };
-        // },
+        loader: async () => {
+          const campaignsRes = await fetch('http://localhost:8000/campaign');
+          const campaignsData = await campaignsRes.json();
+          return { campaignsData };
+        },
       },
       {
         path: '/campaigns',
@@ -54,9 +54,9 @@ const router = createBrowserRouter([
         ),
         loader: async () => {
           // Fetch user data to pre-fill the form
-          const userRes = await fetch('http://localhost:8000/user');
-          const userData = await userRes.json();
-          return userData;
+          const campaignRes = await fetch('http://localhost:8000/campaign');
+          const campaignData = await campaignRes.json();
+          return campaignData;
         },
       },
       // {

@@ -17,7 +17,6 @@ const AddCampaign = () => {
     email: userData?.email || '',
     name: userData?.name || '',
   });
-  console.log(formData);
 
   useEffect(() => {
     AOS.init();
