@@ -13,7 +13,10 @@ import Register from '../components/Register/Register';
 import ErrorPage from '../components/ErrorPage/ErrorPage';
 import ForgotPassword from '../components/ForgotPassword/ForgotPassword';
 import AddCampaign from '../components/AddCampaign/AddCampaign';
+
 import Private from '../components/Private/Private';
+import MyDonation from '../components/MyDonation/MyDonation';
+import MyCampaign from '../components/myCampaign/myCampaign';
 // import UpdateProfile from '../components/UpdateProfile/UpdateProfile';
 // import HowToHelp from '../components/HowToHelp/HowToHelp';
 
@@ -28,7 +31,7 @@ const router = createBrowserRouter([
         element: (
           <>
             <Helmet>
-              <title>Home || Winter Clothing Donation</title>
+              <title>Home || Crowd Cube</title>
             </Helmet>
             <Home />
           </>
@@ -39,18 +42,23 @@ const router = createBrowserRouter([
         //   return { campaignsData };
         // },
       },
-      // {
-      //   path: '/campaigns',
-      //   element: (
-      //     <>
-      //       <Helmet>
-      //         <title>Campaigns || Winter Clothing Donation</title>
-      //       </Helmet>
-      //       <Campaign />
-      //     </>
-      //   ),
-      //   loader: () => fetch('/campaign.json'),
-      // },
+      {
+        path: '/campaigns',
+        element: (
+          <>
+            <Helmet>
+              <title>Campaigns || Crowd Cube</title>
+            </Helmet>
+            <Campaign />
+          </>
+        ),
+        loader: async () => {
+          // Fetch user data to pre-fill the form
+          const userRes = await fetch('http://localhost:8000/user');
+          const userData = await userRes.json();
+          return userData;
+        },
+      },
       // {
       //   path: '/dashboard',
       //   element: (
@@ -100,9 +108,35 @@ const router = createBrowserRouter([
           <>
             <Private>
               <Helmet>
-                <title>Login || Winter Clothing Donation</title>
+                <title>Add Campaign || Crowd cube</title>
               </Helmet>
               <AddCampaign />
+            </Private>
+          </>
+        ),
+      },
+      {
+        path: '/myCampaign',
+        element: (
+          <>
+            <Private>
+              <Helmet>
+                <title>My Campaign || Crowd cube</title>
+              </Helmet>
+              <MyCampaign />
+            </Private>
+          </>
+        ),
+      },
+      {
+        path: '/myDonations',
+        element: (
+          <>
+            <Private>
+              <Helmet>
+                <title>My Donation || Crowd cube</title>
+              </Helmet>
+              <MyDonation />
             </Private>
           </>
         ),
@@ -140,19 +174,6 @@ const router = createBrowserRouter([
           </>
         ),
       },
-      // {
-      //   path: '/update-profile',
-      //   element: (
-      //     <Private>
-      //       <>
-      //         <Helmet>
-      //           <title>Update Profile || Winter Clothing Donation</title>
-      //         </Helmet>
-      //         <UpdateProfile />
-      //       </>
-      //     </Private>
-      //   ),
-      // },
     ],
   },
 ]);
