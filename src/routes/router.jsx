@@ -37,7 +37,7 @@ const router = createBrowserRouter([
           </>
         ),
         loader: async () => {
-          const campaignsRes = await fetch('http://localhost:8000/campaign');
+          const campaignsRes = await fetch('http://localhost:8000/campaigns');
           const campaignsData = await campaignsRes.json();
           return { campaignsData };
         },
@@ -54,7 +54,7 @@ const router = createBrowserRouter([
         ),
         loader: async () => {
           // Fetch user data to pre-fill the form
-          const campaignRes = await fetch('http://localhost:8000/campaign');
+          const campaignRes = await fetch('http://localhost:8000/campaigns');
           const campaignData = await campaignRes.json();
           return campaignData;
         },

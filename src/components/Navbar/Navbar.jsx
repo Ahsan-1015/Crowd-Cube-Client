@@ -5,6 +5,8 @@ import { MdLogout } from 'react-icons/md';
 import { HiOutlineLogin } from 'react-icons/hi';
 import 'animate.css';
 import '../Navbar/Navbar.css';
+// import { FiSun, FiMoon } from 'react-icons/fi'; // Icons for Dark/Light Mode
+import DarkModeToggle from '../DarkModeToggle/DarkModeToggle';
 
 const navUrl = isLoggedIn => (
   <>
@@ -44,7 +46,7 @@ const Navbar = () => {
         <div className="flex items-center lg:hidden">
           <button
             onClick={toggleMenu}
-            className="text-white focus:outline-none p-2 rounded-full border"
+            className="text-yellow-600 focus:outline-none p-2 rounded-full  border  border-yellow-600"
           >
             {isMenuOpen ? (
               <svg
@@ -82,7 +84,7 @@ const Navbar = () => {
 
         {/* Logo */}
         <div className="flex-1 lg:flex-none text-center lg:text-left">
-          <h1 className="text-xl md:text-3xl font-extrabold text-[#31363F]">
+          <h1 className="text-xl md:text-3xl font-extrabold text-white dark:text-yellow-500">
             <NavLink to="/">
               CROWD <span className="text-yellow-500">CUBE</span>
             </NavLink>
@@ -90,7 +92,7 @@ const Navbar = () => {
         </div>
 
         {/* Navigation Links (lg only) */}
-        <div className="hidden lg:flex space-x-6 items-center text-black text-xl">
+        <div className="hidden lg:flex space-x-6 items-center text-yellow-500 text-xl font-medium">
           <ul className="menu menu-horizontal xl:px-1 gap-2 lg:text-md xl:text-lg">
             {navUrl(!!user?.email)}
           </ul>
@@ -98,17 +100,22 @@ const Navbar = () => {
 
         {/* Profile or Login/Register */}
         <div className="flex items-center gap-4">
+          {/* added its place to dark mode light mode btn dynamically work  */}
+          <button className="lg:hidden xl:flex">
+            <DarkModeToggle></DarkModeToggle>
+          </button>
+
           {user?.email ? (
             <div className="relative group">
               {/* Profile Image */}
               <img
-                className="w-12 h-12 rounded-full object-cover border-2 border-black cursor-pointer"
+                className="w-12 h-12 rounded-full object-cover border-2 border-yellow-600 cursor-pointer"
                 src={user.photoURL || '/default-avatar.png'}
                 alt="User"
               />
 
               {/* Dropdown */}
-              <div className="absolute w-40 -left-7 lg:left-0 xl:left-1/2 transform -translate-x-1/2 mt-2 bg-gray-800 text-white text-xs py-2 px-6 rounded-md opacity-0 group-hover:opacity-100 transition-all duration-300 space-y-2 z-10">
+              <div className="absolute w-40 -left-7 lg:left-0 xl:left-1/2 transform -translate-x-1/2 mt-2 bg-gray-800 bg-box border border-blue-900 text-yellow-500  text-xs py-2 px-6 rounded-md opacity-0 group-hover:opacity-100 transition-all duration-300 space-y-2 z-10">
                 {/* User Info */}
                 <div className="text-lg font-semibold">
                   {user.displayName || 'User'}
@@ -116,7 +123,7 @@ const Navbar = () => {
                 {/* Logout Button */}
                 <button
                   onClick={handleLogout}
-                  className="flex items-center w-full justify-center btn bg-[#6B1D1D] hover:bg-[#8B1D1D] text-white text-md py-1"
+                  className="flex items-center w-full justify-center btn border-yellow-600 bg-[#6B1D1D]  hover:bg-[#8B1D1D] text-white text-md py-1"
                 >
                   <MdLogout />
                   <span className="ml-2">Logout</span>
@@ -146,8 +153,8 @@ const Navbar = () => {
 
       {/* Mobile Menu (Toggle-able for sm & md) */}
       {isMenuOpen && (
-        <div className="lg:hidden bg-blue-900">
-          <ul className="menu flex flex-col w-60 gap-4 px-4 py-2">
+        <div className="lg:hidden bg-blue-900 bg-hamburg border border-yellow-600">
+          <ul className="menu flex flex-col w-60 gap-4 px-4 py-2 text-yellow-500 font-semibold">
             {navUrl(!!user?.email)}
 
             {user?.email ? (

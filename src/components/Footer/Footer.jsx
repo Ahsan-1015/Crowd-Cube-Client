@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <footer className="bg-gray-900 bg-image text-white py-12">
       {/* Top Section */}
-      <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div className=" md:w-11/12 2xl:w-10/12 mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 justify-between">
         {/* About Us */}
         <div>
           <img src="logo-footer.png" alt="Logo" className="mb-4 h-12" />
@@ -18,7 +18,7 @@ const Footer = () => {
               href="https://facebook.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-teal-400"
+              className="hover:text-yellow-400"
             >
               <i className="fab fa-facebook fa-lg"></i>
             </a>
@@ -26,7 +26,7 @@ const Footer = () => {
               href="https://twitter.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-teal-400"
+              className="hover:text-yellow-400"
             >
               <i className="fab fa-twitter fa-lg"></i>
             </a>
@@ -34,7 +34,7 @@ const Footer = () => {
               href="https://instagram.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-teal-400"
+              className="hover:text-yellow-400"
             >
               <i className="fab fa-instagram fa-lg"></i>
             </a>
@@ -42,7 +42,7 @@ const Footer = () => {
               href="https://linkedin.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-teal-400"
+              className="hover:text-yellow-400"
             >
               <i className="fab fa-linkedin fa-lg"></i>
             </a>
@@ -54,27 +54,27 @@ const Footer = () => {
           <h2 className="font-semibold text-lg mb-4">Quick Links</h2>
           <ul className="space-y-2 text-gray-400">
             <li>
-              <NavLink to="/" className="hover:text-teal-400">
+              <NavLink to="/" className="hover:text-yellow-400">
                 Home
               </NavLink>
             </li>
             <li>
-              <NavLink to="/campaigns" className="hover:text-teal-400">
+              <NavLink to="/campaigns" className="hover:text-yellow-400">
                 Campaigns
               </NavLink>
             </li>
             <li>
-              <NavLink to="/addCampaign" className="hover:text-teal-400">
+              <NavLink to="/addCampaign" className="hover:text-yellow-400">
                 Add New Campaigns
               </NavLink>
             </li>
             <li>
-              <NavLink to="/myCampaign" className="hover:text-teal-400">
+              <NavLink to="/myCampaign" className="hover:text-yellow-400">
                 My Campaign
               </NavLink>
             </li>
             <li>
-              <NavLink to="/myDonations" className="hover:text-teal-400">
+              <NavLink to="/myDonations" className="hover:text-yellow-400">
                 My Donation
               </NavLink>
             </li>
@@ -99,9 +99,9 @@ const Footer = () => {
             <input
               type="email"
               placeholder="Enter your email"
-              className="p-2 flex-grow rounded-l-md bg-gray-800 text-white placeholder-gray-500 focus:outline-none"
+              className="p-2 w-8 flex-grow rounded-l-md bg-gray-800 text-white placeholder-gray-500 focus:outline-none"
             />
-            <button className="p-2 bg-teal-500 hover:bg-teal-600 text-white rounded-r-md">
+            <button className="p-2 bg-yellow-500 hover:bg-yellow-600 text-black font-semibold rounded-r-md">
               Subscribe
             </button>
           </form>
@@ -109,7 +109,7 @@ const Footer = () => {
       </div>
 
       {/* Divider */}
-      <hr className="my-8 border-red-600" />
+      <hr className="my-8 border border-yellow-500" />
 
       {/* Bottom Section */}
       <div className="text-center text-sm text-gray-500">
@@ -117,14 +117,14 @@ const Footer = () => {
         <p>
           <NavLink
             to="/privacy-policy"
-            className="hover:text-teal-400 underline"
+            className="hover:text-yellow-400 underline"
           >
             Privacy Policy
           </NavLink>{' '}
           |{' '}
           <NavLink
             to="/terms-conditions"
-            className="hover:text-teal-400 underline"
+            className="hover:text-yellow-400 underline"
           >
             Terms & Conditions
           </NavLink>

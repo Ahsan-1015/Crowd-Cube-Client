@@ -33,7 +33,7 @@ const AddCampaign = () => {
   const handleSubmit = async e => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:8000/campaign', {
+      const response = await fetch('http://localhost:8000/campaigns', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

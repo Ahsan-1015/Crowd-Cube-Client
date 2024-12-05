@@ -38,7 +38,7 @@ const Home = () => {
       </div>
       <button
         data-aos="zoom-in-down"
-        className="mx-auto  btn bg-teal-600 hover:bg-teal-700 ease-in-out duration-300 scale-95 text-xl mt-8 animate__animated animate__fadeIn animate__delay-1s "
+        className="mx-auto  btn bg-yellow-600 hover:bg-yellow-700 ease-in-out duration-300 scale-95 text-xl mt-8 animate__animated animate__fadeIn animate__delay-1s "
       >
         <NavLink to="/campaigns">See more</NavLink>
       </button>

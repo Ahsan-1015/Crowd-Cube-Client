@@ -3,8 +3,16 @@ import { NavLink } from 'react-router-dom';
 import 'animate.css';
 
 const CampaignCard = ({ campaign }) => {
-  const { id, title, image, description, status, contactInfo, division } =
-    campaign || {};
+  const {
+    _id,
+    title,
+    image,
+    description,
+    status,
+    contactInfo,
+    division,
+    minDonation,
+  } = campaign || {};
 
   return (
     <div
@@ -12,7 +20,7 @@ const CampaignCard = ({ campaign }) => {
       className="animate__animated animate__fadeIn animate__delay-1s"
     >
       <div
-        key={id}
+        key={_id}
         className="card lg:h-[500px] bg-white shadow-lg hover:shadow-blue-300 transform hover:scale-105 transition-transform duration-300 relative overflow-hidden rounded-lg"
       >
         {/* Image Section */}
@@ -56,9 +64,11 @@ const CampaignCard = ({ campaign }) => {
             </span>
           </div>
 
+          <h1> Min Donation {minDonation}</h1>
+
           {/* Call to Action */}
           <div className="card-actions flex justify-between items-center">
-            <NavLink to={`/details/${id}`}>
+            <NavLink to={`/details/${_id}`}>
               <button className="w-full py-3 text-center text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors font-medium">
                 View Campaign
               </button>
@@ -73,7 +83,7 @@ const CampaignCard = ({ campaign }) => {
 // Define PropTypes
 CampaignCard.propTypes = {
   campaign: PropTypes.shape({
-    id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+    _id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
     title: PropTypes.string.isRequired,
     image: PropTypes.string,
     description: PropTypes.string,
