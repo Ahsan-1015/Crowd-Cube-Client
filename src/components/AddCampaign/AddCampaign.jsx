@@ -1,21 +1,24 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import { useLoaderData, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { authContext } from '../AuthProvider/AuthProvider';
 
 const AddCampaign = () => {
+  const { user } = useContext(authContext);
+  console.log(user);
   const navigate = useNavigate();
-  const userData = useLoaderData(); // Assuming this fetches user data
+  // const userData = useLoaderData(); // Assuming this fetches user data
   const [formData, setFormData] = useState({
     image: '',
     title: '',
-    type: 'personal issue',
+    type: 'Personal Issue',
     description: '',
     minDonation: '',
     deadline: '',
-    email: userData?.email || '',
-    name: userData?.name || '',
+    email: user?.email || '',
+    name: user?.displayName || '',
   });
 
   useEffect(() => {

@@ -101,9 +101,11 @@ const Navbar = () => {
         {/* Profile or Login/Register */}
         <div className="flex items-center gap-4">
           {/* added its place to dark mode light mode btn dynamically work  */}
-          <button className="lg:hidden xl:flex">
+          {/* <button className="lg:hidden xl:flex"> */}
+          <div className="lg:hidden xl:flex">
             <DarkModeToggle></DarkModeToggle>
-          </button>
+          </div>
+          {/* </button> */}
 
           {user?.email ? (
             <div className="relative group">

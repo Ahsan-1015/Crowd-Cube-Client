@@ -14,6 +14,7 @@ const Home = () => {
   return (
     <div className="">
       <BannerSlide></BannerSlide>
+
       <div
         data-aos="zoom-in-down"
         className="flex items-center  gap-3 animate__animated animate__fadeIn animate__delay-1s"

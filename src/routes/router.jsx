@@ -6,7 +6,6 @@ import Home from '../components/Home/Home';
 import Campaign from '../components/Campaign/Campaign';
 // import Dashboard from '../components/Dashboard/Dashboard';
 
-// import Details from '../components/Details/Details';
 import Login from '../components/Login/Login';
 import Register from '../components/Register/Register';
 // import Private from '../components/Private/Private';
@@ -17,6 +16,7 @@ import AddCampaign from '../components/AddCampaign/AddCampaign';
 import Private from '../components/Private/Private';
 import MyDonation from '../components/MyDonation/MyDonation';
 import MyCampaign from '../components/myCampaign/myCampaign';
+import Details from '../components/Details/Details';
 // import UpdateProfile from '../components/UpdateProfile/UpdateProfile';
 // import HowToHelp from '../components/HowToHelp/HowToHelp';
 
@@ -83,25 +83,39 @@ const router = createBrowserRouter([
       //     </>
       //   ),
       // },
-      // {
-      //   path: '/details/:id',
-      //   element: (
-      //     <Private>
-      //       <>
-      //         <Helmet>
-      //           <title>Campaign Details || Winter Clothing Donation</title>
-      //         </Helmet>
-      //         <Details />
-      //       </>
-      //     </Private>
-      //   ),
-      //   loader: async ({ params }) => {
-      //     const res = await fetch('/campaign.json');
-      //     const data = await res.json();
-      //     const singleData = data.find(d => d.id == params.id);
-      //     return singleData;
-      //   },
-      // },
+      {
+        path: '/campaigns/:id',
+        element: (
+          <Private>
+            <>
+              <Helmet>
+                <title>Campaign Details || Crowd Cube</title>
+              </Helmet>
+              <Details />
+            </>
+          </Private>
+        ),
+        loader: async ({ params }) => {
+          try {
+            const res = await fetch(
+              `http://localhost:8000/campaigns/${params.id}`
+            );
+
+            if (!res.ok) {
+              if (res.status === 404) {
+                throw new Response('Campaign not found', { status: 404 });
+              }
+              throw new Error('Failed to fetch campaign details');
+            }
+
+            const campaign = await res.json();
+            return campaign;
+          } catch (error) {
+            console.error(error);
+            throw new Response('An error occurred', { status: 500 });
+          }
+        },
+      },
       {
         path: '/addCampaign',
         element: (
