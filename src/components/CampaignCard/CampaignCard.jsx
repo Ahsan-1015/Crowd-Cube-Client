@@ -32,7 +32,7 @@ const CampaignCard = ({ campaign }) => {
 
         {/* Card Body */}
         <div className="card-body p-6">
-          <h2 className="card-title text-3xl font-semibold text-yellow-600 dark:text-white mb-2">
+          <h2 className="card-title  text-2xl font-semibold text-yellow-600 dark:text-white mb-2">
             {title}
           </h2>
           <div className="flex items-center justify-between mb-4">
@@ -47,7 +47,7 @@ const CampaignCard = ({ campaign }) => {
               {type || 'General'}
             </span>
 
-            <span className="text-gray-500 dark:text-gray-300 text-sm">
+            <span className="text-gray-500 dark:text-gray-300 text-lg font-semibold border p-1 rounded-lg">
               Deadline: {deadline}
             </span>
           </div>
