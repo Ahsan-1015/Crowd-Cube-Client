@@ -17,7 +17,7 @@ const AddCampaign = () => {
     description: '',
     minDonation: '',
     deadline: '',
-    email: user?.email || '',
+    userEmail: user?.email || '',
     name: user?.displayName || '',
   });
 
@@ -185,7 +185,7 @@ const AddCampaign = () => {
           <input
             type="email"
             name="email"
-            value={formData.email}
+            value={formData.userEmail}
             readOnly
             className="w-full px-4 py-2 border border-gray-300 rounded-lg bg-gray-100 focus:outline-none"
           />
