@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import '../Footer/Footer.css';
+import logo from '/logo.png';
 
 const Footer = () => {
   return (
@@ -8,7 +9,14 @@ const Footer = () => {
       <div className=" md:w-11/12 2xl:w-10/12 mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 justify-between">
         {/* About Us */}
         <div>
-          <img src="logo-footer.png" alt="Logo" className="mb-4 h-12" />
+          <NavLink to={'/'}>
+            {' '}
+            <img
+              src={logo}
+              alt="Logo"
+              className="mb-4 h-28  mx-auto md:mx-0 cursor-pointer"
+            />
+          </NavLink>
           <p className="text-gray-400 mb-4">
             Crowdfunding the future—join us in building tomorrow’s successes by
             supporting innovative projects.

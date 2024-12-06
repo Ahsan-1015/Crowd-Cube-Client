@@ -5,7 +5,7 @@ import { FaGoogle, FaEye, FaEyeSlash } from 'react-icons/fa';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
-// import logo from '/favicon.png';
+import logo from '/logo.png';
 
 const Login = () => {
   const { handleGoogleLogin, handleLogin } = useContext(authContext);
@@ -44,7 +44,11 @@ const Login = () => {
   return (
     <div className="flex justify-center items-center py-8 md:py-20">
       <div className="animate__animated animate__zoomIn rounded-lg p-8 w-full max-w-sm bg-gradient-to-r from-blue-100 to-purple-100 shadow-xl shadow-orange-300 hover:shadow-2xl hover:shadow-emerald-600 hover:ease-in-out duration-300 ">
-        <img className="w-36 h-32 mx-auto flex justify-center" src="" alt="" />
+        <img
+          className="w-40 h-32 mx-auto flex justify-center"
+          src={logo}
+          alt=""
+        />
         <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
           Log In
         </h2>

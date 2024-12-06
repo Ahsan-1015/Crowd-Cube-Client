@@ -17,6 +17,7 @@ import Private from '../components/Private/Private';
 import MyDonation from '../components/MyDonation/MyDonation';
 import MyCampaign from '../components/myCampaign/myCampaign';
 import Details from '../components/Details/Details';
+
 // import UpdateProfile from '../components/UpdateProfile/UpdateProfile';
 // import HowToHelp from '../components/HowToHelp/HowToHelp';
 
@@ -155,6 +156,7 @@ const router = createBrowserRouter([
           </>
         ),
       },
+
       {
         path: '/login',
         element: (

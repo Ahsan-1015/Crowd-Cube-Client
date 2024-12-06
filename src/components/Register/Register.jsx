@@ -2,7 +2,7 @@ import { useContext, useState } from 'react';
 import { authContext } from '../AuthProvider/AuthProvider';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaGoogle, FaEye, FaEyeSlash } from 'react-icons/fa';
-// import logo from '/favicon.png';
+import logo from '/logo.png';
 
 const Register = () => {
   const { handleRegister, manageProfile, handleGoogleLogin } =
@@ -68,7 +68,11 @@ const Register = () => {
   return (
     <div className="flex justify-center items-center py-2 md:py-10">
       <div className="animate__animated animate__zoomIn card bg-gradient-to-r from-blue-100 to-purple-100 shadow-xl shadow-orange-300 hover:shadow-2xl hover:shadow-emerald-600 hover:ease-in-out duration-300  rounded-lg p-8 w-full max-w-md">
-        <img className="w-36 h-32 mx-auto flex justify-center" src="" alt="" />
+        <img
+          className="w-40 h-32 mx-auto flex justify-center"
+          src={logo}
+          alt=""
+        />
         <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">
           Register
         </h2>
