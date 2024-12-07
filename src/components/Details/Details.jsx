@@ -118,8 +118,17 @@ const Details = () => {
           <div className="absolute inset-0 bg-black bg-opacity-30"></div>
           <div className="relative flex flex-col items-center justify-center h-full text-center text-white p-6 space-y-4 backdrop-blur-sm">
             <h1 className="text-4xl font-bold text-yellow-500">{title}</h1>
-            <p className="text-lg font-medium">{description}</p>
-            <span className="badge badge-secondary text-lg">{type}</span>
+            <p className="text-lg font-base">{description}</p>
+            <span
+              className={`text-sm font-medium px-3  py-2 rounded 
+    ${type === 'startup' ? 'bg-green-200 text-green-800' : ''} 
+    ${type === 'business' ? 'bg-teal-200 text-teal-800' : ''} 
+    ${type === 'Personal Issue' ? 'bg-blue-200 text-blue-800' : ''} 
+    ${type === 'creative ideas' ? 'bg-yellow-200 text-yellow-800' : ''} 
+    ${!type || type === 'General' ? 'bg-gray-200 text-gray-800' : ''}`}
+            >
+              {type || 'General'}
+            </span>
             <div className="mt-4 p-3 bg-blue-600 min_bg text-white rounded-lg shadow-lg">
               <p className="text-xl font-bold ">Minimum Donation:</p>
               <p className="text-2xl font-semibold text-green-400">
@@ -130,7 +139,7 @@ const Details = () => {
               <strong>Deadline:</strong> {deadline}
             </p>
             {isCampaignExpired && (
-              <p className="mt-2 text-red-500 font-semibold">
+              <p className="mt-2 text-red-500 font-semibold bg-white p-3 rounded-lg">
                 This campaign has ended. Donations are no longer accepted.
               </p>
             )}
@@ -192,7 +201,7 @@ const Details = () => {
           </div>
           <button
             type="submit"
-            className="btn bg-yellow-500 hover:bg-yellow-600 w-full donate_bg text-white text-lg"
+            className="btn  w-full donate_bg text-white text-lg"
             disabled={isCampaignExpired}
           >
             Donate Now

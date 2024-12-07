@@ -10,9 +10,29 @@ const Campaign = () => {
   const handleSort = async () => {
     const newSortOrder = sortOrder === 'asc' ? 'desc' : 'asc';
     try {
-      const response = await fetch(`/campaigns?sort=${newSortOrder}`);
+      const response = await fetch(
+        `http://localhost:8000/campaigns?sort=${newSortOrder}`
+      );
+      if (!response.ok) {
+        throw new Error('Failed to fetch sorted campaigns');
+      }
       const sortedCampaigns = await response.json();
-      setCampaigns(sortedCampaigns);
+
+      // Ensure minDonation is treated as a number for sorting
+      const sortedWithNumbers = sortedCampaigns.map(campaign => ({
+        ...campaign,
+        minDonation: parseFloat(campaign.minDonation), // Convert minDonation to a number
+      }));
+
+      // Sort campaigns based on minDonation
+      sortedWithNumbers.sort((a, b) => {
+        return sortOrder === 'asc'
+          ? a.minDonation - b.minDonation
+          : b.minDonation - a.minDonation;
+      });
+
+      console.log('Sorted campaigns:', sortedWithNumbers); // Debugging
+      setCampaigns(sortedWithNumbers);
       setSortOrder(newSortOrder);
     } catch (error) {
       console.error('Failed to fetch sorted campaigns:', error);
@@ -25,19 +45,19 @@ const Campaign = () => {
       <div className="text-center mt-6">
         <button
           onClick={handleSort}
-          className="btn bg-blue-500 text-white px-4 py-2 rounded-md"
+          className="btn bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md"
         >
           Sort by Minimum Donation (
           {sortOrder === 'asc' ? 'Ascending' : 'Descending'})
         </button>
       </div>
       <div className="grid gap-6 mt-7 grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
-        {campaigns.length > 0 ? (
+        {campaigns && campaigns.length > 0 ? (
           campaigns.map(campaign => (
             <CampaignCard key={campaign._id} campaign={campaign} />
           ))
         ) : (
-          <p>No campaigns found.</p>
+          <p className="text-center text-gray-500">No campaigns found.</p>
         )}
       </div>
     </div>
