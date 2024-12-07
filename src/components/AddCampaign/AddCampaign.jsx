@@ -4,6 +4,7 @@ import 'aos/dist/aos.css';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { authContext } from '../AuthProvider/AuthProvider';
+import '../AddCampaign/AddCampaign.css';
 
 const AddCampaign = () => {
   const { user } = useContext(authContext);
@@ -208,7 +209,7 @@ const AddCampaign = () => {
         {/* Submit Button */}
         <button
           type="submit"
-          className="w-full py-2 px-4 bg-blue-600 text-white font-semibold rounded-lg shadow hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-1"
+          className="w-full py-2 donate_bg px-4 bg-blue-600 text-white font-semibold rounded-lg shadow hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-1"
         >
           Add Campaign
         </button>

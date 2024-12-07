@@ -31,7 +31,7 @@ const Campaign = () => {
           {sortOrder === 'asc' ? 'Ascending' : 'Descending'})
         </button>
       </div>
-      <div className="grid gap-6 mt-7 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-6 mt-7 grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
         {campaigns.length > 0 ? (
           campaigns.map(campaign => (
             <CampaignCard key={campaign._id} campaign={campaign} />

@@ -4,7 +4,7 @@ import 'animate.css';
 import './CampaignCard.css'; // External CSS for custom styling
 
 const CampaignCard = ({ campaign }) => {
-  const { _id, title, image, deadline, type } = campaign || {};
+  const { _id, title, image, deadline, type, minDonation } = campaign || {};
 
   return (
     <div
@@ -13,10 +13,10 @@ const CampaignCard = ({ campaign }) => {
     >
       <div
         key={_id}
-        className="campaign-card-container card lg:h-[450px] shadow-lg transform transition-transform duration-300 relative overflow-hidden rounded-lg"
+        className="campaign-card-container card lg:h-[500px] shadow-lg transform transition-transform duration-300 relative overflow-hidden rounded-lg"
       >
         {/* Image Section */}
-        <div className="relative h-80">
+        <div className="relative h-[300px]">
           {image ? (
             <img
               src={image}
@@ -31,8 +31,8 @@ const CampaignCard = ({ campaign }) => {
         </div>
 
         {/* Card Body */}
-        <div className="card-body p-6">
-          <h2 className="card-title  text-2xl font-semibold text-yellow-600 dark:text-white mb-2">
+        <div className="p-2  lg:card lg:p-7">
+          <h2 className="card-title text-xl lg:text-2xl font-semibold text-yellow-600 dark:text-white mb-2">
             {title}
           </h2>
           <div className="flex items-center justify-between mb-4">
@@ -47,10 +47,14 @@ const CampaignCard = ({ campaign }) => {
               {type || 'General'}
             </span>
 
-            <span className="text-gray-500 dark:text-gray-300 text-lg font-semibold border p-1 rounded-lg">
+            <span className="text-gray-500 dark:text-gray-300 text-lg md:text-base font-semibold border p-1 rounded-lg">
               Deadline: {deadline}
             </span>
           </div>
+          <h1 className="text-lg text-gray-600">
+            <strong>Min Donation: </strong>
+            {minDonation}
+          </h1>
         </div>
 
         {/* Hover Overlay */}

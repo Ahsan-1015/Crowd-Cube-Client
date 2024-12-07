@@ -4,11 +4,14 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaGoogle, FaEye, FaEyeSlash } from 'react-icons/fa';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import Swal from 'sweetalert2'; // Import SweetAlert for success/error handling
+import 'animate.css'; // Import Animate.css for animations
 
 import logo from '/logo.png';
 
 const Login = () => {
-  const { handleGoogleLogin, handleLogin } = useContext(authContext);
+  const { handleGoogleLogin, handleLogin, currentUser } =
+    useContext(authContext);
   const [email, setEmail] = useState('');
   const [error, setError] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -28,16 +31,61 @@ const Login = () => {
     setEmail(emailValue); // Save email in state
     handleLogin(emailValue, password)
       .then(() => {
-        navigate('/');
+        // Get displayName or fallback to 'User'
+        const userName = currentUser?.displayName || 'User';
+
+        // Show a SweetAlert for successful login with animations
+        Swal.fire({
+          title: 'Welcome Back!',
+          text: `Hello, ${userName}!`,
+          icon: 'success',
+          showConfirmButton: false, // No "OK" button
+          timer: 2000, // The alert will auto-close after 2 seconds
+          timerProgressBar: true, // Adds a progress bar
+          showClass: {
+            popup: `animate__animated animate__fadeInUp animate__faster`, // Entry animation
+          },
+          hideClass: {
+            popup: `animate__animated animate__fadeOutDown animate__faster`, // Exit animation
+          },
+        }).then(() => {
+          navigate('/');
+        });
       })
       .catch(err => {
         setError(err.message);
+        // Display SweetAlert error if login fails
+        Swal.fire({
+          title: 'Login Failed',
+          text: 'The email or password is incorrect. Please try again.',
+          icon: 'error',
+          confirmButtonText: 'OK',
+        });
       });
   };
 
   const googleLoginHandler = () => {
     handleGoogleLogin().then(() => {
-      navigate(location.state?.from || '/');
+      // Get displayName or fallback to 'User'
+      const userName = currentUser?.displayName || 'User';
+
+      // Show a SweetAlert for successful Google login with animations
+      Swal.fire({
+        title: 'Welcome Back!',
+        text: `Hello, ${userName}!`,
+        icon: 'success',
+        showConfirmButton: false, // No "OK" button
+        timer: 2000, // The alert will auto-close after 2 seconds
+        timerProgressBar: true, // Adds a progress bar
+        showClass: {
+          popup: `animate__animated animate__fadeInUp animate__faster`, // Entry animation
+        },
+        hideClass: {
+          popup: `animate__animated animate__fadeOutDown animate__faster`, // Exit animation
+        },
+      }).then(() => {
+        navigate(location.state?.from || '/');
+      });
     });
   };
 

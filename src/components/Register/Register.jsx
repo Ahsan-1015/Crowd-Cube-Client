@@ -2,6 +2,7 @@ import { useContext, useState } from 'react';
 import { authContext } from '../AuthProvider/AuthProvider';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaGoogle, FaEye, FaEyeSlash } from 'react-icons/fa';
+import Swal from 'sweetalert2'; // Import SweetAlert for success/error handling
 import logo from '/logo.png';
 
 const Register = () => {
@@ -45,17 +46,52 @@ const Register = () => {
     handleRegister(email, password)
       .then(() => {
         manageProfile(name, image);
-        navigate('/'); // Redirect to home page
+
+        // Show SweetAlert for successful registration
+        Swal.fire({
+          title: 'Registration Successful',
+          text: 'Welcome to our platform!',
+          icon: 'success',
+          confirmButtonText: 'OK',
+        }).then(() => {
+          navigate('/'); // Redirect to home page after success
+        });
       })
       .catch(err => {
         setError(err.message);
+        // Display SweetAlert error if registration fails
+        Swal.fire({
+          title: 'Registration Failed',
+          text: 'Please try again later.',
+          icon: 'error',
+          confirmButtonText: 'OK',
+        });
       });
   };
 
   const googleLoginHandler = () => {
-    handleGoogleLogin().then(() => {
-      navigate('/');
-    });
+    handleGoogleLogin()
+      .then(() => {
+        // Show SweetAlert for successful Google registration/login
+        Swal.fire({
+          title: 'Welcome Back!',
+          text: 'You have logged in via Google.',
+          icon: 'success',
+          confirmButtonText: 'OK',
+        }).then(() => {
+          navigate('/'); // Redirect to home page after success
+        });
+      })
+      .catch(() => {
+        // Display SweetAlert error if Google login fails
+        Swal.fire({
+          title: 'Google Login Failed',
+          text: 'Please try again later.',
+
+          icon: 'error',
+          confirmButtonText: 'OK',
+        });
+      });
   };
 
   const toggleVisibility = field => {
@@ -179,7 +215,7 @@ const Register = () => {
         >
           <div className="flex gap-2 bg-red-500 hover:bg-red-600 w-full items-center justify-center py-2 text-white font-semibold rounded-lg transition duration-300">
             <FaGoogle className="text-2xl font-extrabold" />
-            <button>Log In with Google</button>
+            <button>Register with Google</button>
           </div>
         </div>
       </div>

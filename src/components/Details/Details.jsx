@@ -4,6 +4,7 @@ import { authContext } from '../AuthProvider/AuthProvider';
 import Swal from 'sweetalert2';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import '../Details/Details.css';
 
 const Details = () => {
   const campaign = useLoaderData();
@@ -15,12 +16,23 @@ const Details = () => {
   const [form, setForm] = useState({
     name: user?.displayName || '',
     email: user?.email || '',
-    minDonation: minDonation || '',
+    minDonation: '',
+    description: '', // Initialize the description field
   });
+
+  const [isCampaignExpired, setIsCampaignExpired] = useState(false);
 
   useEffect(() => {
     AOS.init({ duration: 800 });
-  }, []);
+
+    // Check if the campaign is expired
+    const currentDate = new Date();
+    const campaignDeadline = new Date(deadline);
+
+    if (currentDate > campaignDeadline) {
+      setIsCampaignExpired(true);
+    }
+  }, [deadline]);
 
   const handleInputChange = e => {
     const { name, value } = e.target;
@@ -36,11 +48,22 @@ const Details = () => {
       return;
     }
 
+    // Validate the donation amount
+    if (parseFloat(form.minDonation) < parseFloat(minDonation)) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Donation Too Low',
+        text: `Please donate at least $${minDonation} or more.`,
+      });
+      return;
+    }
+
     const donationData = {
       campaignId: campaign._id,
       userEmail: form.email,
       username: form.name,
       minDonation: form.minDonation,
+      description: form.description, // Add description to the donation data
     };
 
     try {
@@ -58,7 +81,7 @@ const Details = () => {
           title: 'Thank you for your donation!',
           text: 'Your donation has been submitted successfully.',
         });
-        setForm({ ...form, minDonation: '' });
+        setForm({ ...form, minDonation: '', description: '' }); // Reset the form fields
       } else {
         Swal.fire({
           icon: 'error',
@@ -82,9 +105,9 @@ const Details = () => {
 
   return (
     <div className="min-h-screen flex justify-center items-center py-10">
-      <div className="grid xl:grid-cols-2 gap-6 items-center border border-gray-300 w-full">
+      <div className="grid xl:grid-cols-2 gap-6 items-center border border-yellow-300 p-3 rounded-lg w-full">
         <div
-          className="relative md:h-[700px] xl:h-[700px] rounded-lg overflow-hidden shadow-lg"
+          className="relative md:h-[600px] xl:h-[600px] rounded-lg overflow-hidden shadow-lg"
           data-aos="fade-right"
         >
           <img
@@ -92,26 +115,38 @@ const Details = () => {
             alt={title}
             className="absolute inset-0 w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-black bg-opacity-40"></div>
-          <div className="relative flex flex-col items-center  justify-center h-full text-center text-white p-6 space-y-4 backdrop-blur-sm">
+          <div className="absolute inset-0 bg-black bg-opacity-30"></div>
+          <div className="relative flex flex-col items-center justify-center h-full text-center text-white p-6 space-y-4 backdrop-blur-sm">
             <h1 className="text-4xl font-bold text-yellow-500">{title}</h1>
-            <p className="text-lg">{description}</p>
+            <p className="text-lg font-medium">{description}</p>
             <span className="badge badge-secondary text-lg">{type}</span>
-            <div className="mt-4 p-3 bg-blue-600 text-white rounded-lg shadow-md">
-              <p className="text-xl font-bold">Minimum Donation:</p>
-              <p className="text-2xl">${minDonation}</p>
+            <div className="mt-4 p-3 bg-blue-600 min_bg text-white rounded-lg shadow-lg">
+              <p className="text-xl font-bold ">Minimum Donation:</p>
+              <p className="text-2xl font-semibold text-green-400">
+                ${minDonation}
+              </p>
             </div>
-            <p className="mt-4 text-sm">
+            <p className="mt-4 text-md">
               <strong>Deadline:</strong> {deadline}
             </p>
+            {isCampaignExpired && (
+              <p className="mt-2 text-red-500 font-semibold">
+                This campaign has ended. Donations are no longer accepted.
+              </p>
+            )}
           </div>
         </div>
 
+        {/* Donation Form */}
+
         <form
           onSubmit={handleDonate}
-          className="flex flex-col gap-4 p-6 bg-white rounded-lg shadow-lg"
+          className={`flex flex-col gap-4 p-6 bg-white rounded-lg shadow-lg ${
+            isCampaignExpired ? 'pointer-events-none opacity-50' : ''
+          }`}
           data-aos="fade-left"
         >
+          <h1 className="text-2xl font-bold text-center">Donate Form __</h1>
           <div className="form-group">
             <label className="text-lg font-semibold">Name</label>
             <input
@@ -141,9 +176,25 @@ const Details = () => {
               onChange={handleInputChange}
               required
               className="input input-bordered w-full"
+              disabled={isCampaignExpired}
             />
           </div>
-          <button type="submit" className="btn btn-primary w-full">
+          <div className="form-group">
+            <label className="text-lg font-semibold">Description</label>
+            <textarea
+              name="description"
+              value={form.description}
+              onChange={handleInputChange}
+              className="textarea textarea-bordered w-full"
+              placeholder="Optional: Add a message with your donation"
+              disabled={isCampaignExpired}
+            ></textarea>
+          </div>
+          <button
+            type="submit"
+            className="btn bg-yellow-500 hover:bg-yellow-600 w-full donate_bg text-white text-lg"
+            disabled={isCampaignExpired}
+          >
             Donate Now
           </button>
         </form>
