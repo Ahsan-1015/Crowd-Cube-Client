@@ -89,6 +89,7 @@ const Details = () => {
           text: 'Something went wrong, please try again.',
         });
       }
+      // eslint-disable-next-line no-unused-vars
     } catch (error) {
       Swal.fire({
         icon: 'error',
@@ -201,7 +202,9 @@ const Details = () => {
           </div>
           <button
             type="submit"
-            className="btn  w-full donate_bg text-white text-lg"
+            className={`btn w-full ${
+              !isCampaignExpired ? 'donate_bg' : ''
+            } text-white text-lg`}
             disabled={isCampaignExpired}
           >
             Donate Now

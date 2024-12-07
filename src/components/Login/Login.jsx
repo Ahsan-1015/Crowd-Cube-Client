@@ -32,7 +32,7 @@ const Login = () => {
     handleLogin(emailValue, password)
       .then(() => {
         // Get displayName or fallback to 'User'
-        const userName = currentUser?.displayName || 'User';
+        const userName = user?.displayName || 'Dear';
 
         // Show a SweetAlert for successful login with animations
         Swal.fire({
@@ -67,7 +67,7 @@ const Login = () => {
   const googleLoginHandler = () => {
     handleGoogleLogin().then(() => {
       // Get displayName or fallback to 'User'
-      const userName = currentUser?.displayName || 'User';
+      const userName = currentUser?.displayName || 'Dear';
 
       // Show a SweetAlert for successful Google login with animations
       Swal.fire({

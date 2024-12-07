@@ -37,11 +37,13 @@ const router = createBrowserRouter([
             <Home />
           </>
         ),
-        loader: async () => {
-          const campaignsRes = await fetch('http://localhost:8000/campaigns');
-          const campaignsData = await campaignsRes.json();
-          return { campaignsData };
-        },
+        // loader: async () => {
+        //   const campaignsRes = await fetch(
+        //     'http://localhost:8000/runningCampaigns'
+        //   );
+        //   const campaignsData = await campaignsRes.json();
+        //   return { campaignsData };
+        // },
       },
       {
         path: '/campaigns',
