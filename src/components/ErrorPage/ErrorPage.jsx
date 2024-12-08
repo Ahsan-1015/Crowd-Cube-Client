@@ -20,7 +20,7 @@ const ErrorPage = () => {
         backgroundSize: 'cover',
       }}
     >
-      <div className="text-center p-20 hover:shadow-xl shadow-orange-300 hover:shadow-teal-500 bg-white bg-opacity-70 rounded-lg shadow-lg">
+      <div className="text-center p-20 hover:shadow-xl  bg-gradient-to-r from-teal-100 to-yellow-100 shadow-xl shadow-orange-300 shadow-orange-300 hover:shadow-teal-500 bg-white bg-opacity-70 rounded-lg shadow-lg">
         <h1
           className="text-5xl font-bold text-red-500 animate__animated animate__fadeInDown"
           data-aos="fade-down"

@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import BannerSlide from '../BannerSlide/BannerSlide';
 import CampaignCard from '../CampaignCard/CampaignCard';
 import SponsorshipMarquee from '../SponsorshipMarquee/SponsorshipMarquee';
+import SuccessRate from '../SucessRate/SucessRate';
 
 const Home = () => {
   // Local state to store fetched campaigns
@@ -80,6 +81,10 @@ const Home = () => {
       >
         <NavLink to="/campaigns">Show All</NavLink>
       </button>
+
+      <div>
+        <SuccessRate></SuccessRate>
+      </div>
 
       <div className="py-11">
         <SponsorshipMarquee></SponsorshipMarquee>

@@ -16,6 +16,7 @@ import Private from '../components/Private/Private';
 import MyDonation from '../components/MyDonation/MyDonation';
 import MyCampaign from '../components/myCampaign/myCampaign';
 import Details from '../components/Details/Details';
+import SuccessRate from '../components/SucessRate/SucessRate';
 
 const router = createBrowserRouter([
   {
@@ -128,11 +129,22 @@ const router = createBrowserRouter([
       },
 
       {
+        path: '/success-rate',
+        element: (
+          <>
+            <Helmet>
+              <title>Success Rate || Crowd cube</title>
+            </Helmet>
+            <SuccessRate />
+          </>
+        ),
+      },
+      {
         path: '/login',
         element: (
           <>
             <Helmet>
-              <title>Login || Winter Clothing Donation</title>
+              <title>Login || Crowd cube</title>
             </Helmet>
             <Login />
           </>
@@ -143,7 +155,7 @@ const router = createBrowserRouter([
         element: (
           <>
             <Helmet>
-              <title>Register || Winter Clothing Donation</title>
+              <title>Register || Crowd cube</title>
             </Helmet>
             <Register />
           </>
@@ -154,7 +166,7 @@ const router = createBrowserRouter([
         element: (
           <>
             <Helmet>
-              <title>Forgot Password || Winter Clothing Donation</title>
+              <title>Forgot Password || Crowd cube</title>
             </Helmet>
             <ForgotPassword />
           </>
