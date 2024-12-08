@@ -1,14 +1,13 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
-// import MainLayout from '../components/MainLayout/MainLayout';
+
 import MainLayout from '../components/MainLayouts/MainLayouts';
 import Home from '../components/Home/Home';
 import Campaign from '../components/Campaign/Campaign';
-// import Dashboard from '../components/Dashboard/Dashboard';
 
 import Login from '../components/Login/Login';
 import Register from '../components/Register/Register';
-// import Private from '../components/Private/Private';
+
 import ErrorPage from '../components/ErrorPage/ErrorPage';
 import ForgotPassword from '../components/ForgotPassword/ForgotPassword';
 import AddCampaign from '../components/AddCampaign/AddCampaign';
@@ -17,9 +16,6 @@ import Private from '../components/Private/Private';
 import MyDonation from '../components/MyDonation/MyDonation';
 import MyCampaign from '../components/myCampaign/myCampaign';
 import Details from '../components/Details/Details';
-
-// import UpdateProfile from '../components/UpdateProfile/UpdateProfile';
-// import HowToHelp from '../components/HowToHelp/HowToHelp';
 
 const router = createBrowserRouter([
   {
@@ -37,13 +33,6 @@ const router = createBrowserRouter([
             <Home />
           </>
         ),
-        // loader: async () => {
-        //   const campaignsRes = await fetch(
-        //     'http://localhost:8000/runningCampaigns'
-        //   );
-        //   const campaignsData = await campaignsRes.json();
-        //   return { campaignsData };
-        // },
       },
       {
         path: '/campaigns',
@@ -57,32 +46,22 @@ const router = createBrowserRouter([
         ),
         loader: async () => {
           // Fetch user data to pre-fill the form
-          const campaignRes = await fetch('http://localhost:8000/campaigns');
+          const campaignRes = await fetch(
+            'https://crowd-cube-server-ruby.vercel.app/campaigns'
+          );
           const campaignData = await campaignRes.json();
           return campaignData;
         },
       },
+
       // {
-      //   path: '/dashboard',
-      //   element: (
-      //     <Private>
-      //       <>
-      //         <Helmet>
-      //           <title>Dashboard || Winter Clothing Donation</title>
-      //         </Helmet>
-      //         <Dashboard />
-      //       </>
-      //     </Private>
-      //   ),
-      // },
-      // {
-      //   path: '/help',
+      //   path: '/how-it-works',
       //   element: (
       //     <>
       //       <Helmet>
-      //         <title>help || Winter Clothing Donation</title>
+      //         <title>How it works || Winter Clothing Donation</title>
       //       </Helmet>
-      //       <HowToHelp />
+      //       <HowItWorks />
       //     </>
       //   ),
       // },
@@ -101,7 +80,7 @@ const router = createBrowserRouter([
         loader: async ({ params }) => {
           try {
             const res = await fetch(
-              `http://localhost:8000/campaigns/${params.id}`
+              `https://crowd-cube-server-ruby.vercel.app/campaigns/${params.id}`
             );
 
             if (!res.ok) {

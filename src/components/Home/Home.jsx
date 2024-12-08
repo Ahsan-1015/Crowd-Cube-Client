@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react';
 import BannerSlide from '../BannerSlide/BannerSlide';
 import CampaignCard from '../CampaignCard/CampaignCard';
 
+import SponsorshipMarquee from '../SponsorshipMarquee/SponsorshipMarquee';
+
 const Home = () => {
   // Local state to store fetched campaigns
   const [campaignsData, setCampaignsData] = useState([]);
@@ -12,7 +14,9 @@ const Home = () => {
     const fetchCampaigns = async () => {
       try {
         // Fetch data from the backend API
-        const response = await fetch('http://localhost:8000/campaigns');
+        const response = await fetch(
+          'https://crowd-cube-server-ruby.vercel.app/campaigns'
+        );
         const data = await response.json();
 
         // Log the data to ensure it's being fetched correctly
@@ -77,6 +81,10 @@ const Home = () => {
       >
         <NavLink to="/campaigns">Show All</NavLink>
       </button>
+
+      <div className="py-11">
+        <SponsorshipMarquee></SponsorshipMarquee>
+      </div>
     </div>
   );
 };

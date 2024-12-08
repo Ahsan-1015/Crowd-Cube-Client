@@ -32,7 +32,7 @@ const MyDonation = () => {
     const fetchDonations = async () => {
       try {
         const res = await fetch(
-          `http://localhost:8000/myDonations?userEmail=${user.email}`
+          `https://crowd-cube-server-ruby.vercel.app/myDonations?userEmail=${user.email}`
         );
         const data = await res.json();
         if (res.ok) {

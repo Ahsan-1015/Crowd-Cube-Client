@@ -23,7 +23,7 @@ const MyCampaign = () => {
 
       try {
         const response = await fetch(
-          `http://localhost:8000/myCampaigns?userEmail=${user.email}`
+          `https://crowd-cube-server-ruby.vercel.app/myCampaigns?userEmail=${user.email}`
         );
         if (!response.ok) {
           throw new Error('Failed to fetch campaigns');
@@ -60,7 +60,7 @@ const MyCampaign = () => {
       if (result.isConfirmed) {
         try {
           const response = await fetch(
-            `http://localhost:8000/campaigns/${id}`,
+            `https://crowd-cube-server-ruby.vercel.app/campaigns/${id}`,
             { method: 'DELETE' }
           );
 
@@ -95,7 +95,7 @@ const MyCampaign = () => {
 
     try {
       const response = await fetch(
-        `http://localhost:8000/campaigns/${selectedCampaign._id}`,
+        `https://crowd-cube-server-ruby.vercel.app/campaigns/${selectedCampaign._id}`,
         {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },

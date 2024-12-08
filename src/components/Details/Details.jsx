@@ -67,13 +67,16 @@ const Details = () => {
     };
 
     try {
-      const res = await fetch('http://localhost:8000/donate', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(donationData),
-      });
+      const res = await fetch(
+        'https://crowd-cube-server-ruby.vercel.app/donate',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(donationData),
+        }
+      );
 
       if (res.ok) {
         Swal.fire({

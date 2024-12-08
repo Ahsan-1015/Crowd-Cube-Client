@@ -11,7 +11,7 @@ const Campaign = () => {
     const newSortOrder = sortOrder === 'asc' ? 'desc' : 'asc';
     try {
       const response = await fetch(
-        `http://localhost:8000/campaigns?sort=${newSortOrder}`
+        `https://crowd-cube-server-ruby.vercel.app/campaigns?sort=${newSortOrder}`
       );
       if (!response.ok) {
         throw new Error('Failed to fetch sorted campaigns');

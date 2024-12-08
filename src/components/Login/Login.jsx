@@ -32,7 +32,7 @@ const Login = () => {
     handleLogin(emailValue, password)
       .then(() => {
         // Get displayName or fallback to 'User'
-        const userName = user?.displayName || 'Dear';
+        const userName = currentUser?.displayName || 'Dear';
 
         // Show a SweetAlert for successful login with animations
         Swal.fire({
