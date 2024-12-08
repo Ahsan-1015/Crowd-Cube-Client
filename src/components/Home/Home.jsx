@@ -2,7 +2,6 @@ import { NavLink } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import BannerSlide from '../BannerSlide/BannerSlide';
 import CampaignCard from '../CampaignCard/CampaignCard';
-
 import SponsorshipMarquee from '../SponsorshipMarquee/SponsorshipMarquee';
 
 const Home = () => {

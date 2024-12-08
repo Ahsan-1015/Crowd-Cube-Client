@@ -92,7 +92,7 @@ const MyDonation = () => {
                     <img
                       src={donation.campaignData.image}
                       alt={donation.campaignData.title}
-                      className="w-full h-48 object-cover rounded-lg shadow-md mb-4"
+                      className="w-full h-60 object-cover rounded-lg shadow-md mb-4"
                     />
                     <h2 className="card-title text-xl font-semibold text-gray-800 mb-2">
                       {donation.campaignData.title}
@@ -108,7 +108,7 @@ const MyDonation = () => {
 
                   {/* Right Side: My Donation Info */}
                   <div className="w-full md:w-1/2 mt-4 md:mt-0 md:pl-6">
-                    <h3 className="text-lg font-semibold text-indigo-600 mb-4">
+                    <h3 className="text-2xl font-semibold text-indigo-600 mb-4">
                       My Donation
                     </h3>
                     <div className="space-y-2">
