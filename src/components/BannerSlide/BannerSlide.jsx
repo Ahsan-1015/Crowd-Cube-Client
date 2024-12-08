@@ -13,6 +13,8 @@ import { EffectFade, Navigation, Pagination, Autoplay } from 'swiper/modules';
 // Import AOS
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { NavLink } from 'react-router-dom';
+import { Typewriter } from 'react-simple-typewriter';
 
 export default function BannerSlide() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -25,6 +27,7 @@ export default function BannerSlide() {
   );
 
   const swiperRef = useRef(null); // Reference to the swiper instance
+  const typewriterRef = useRef(null); // Reference for typewriter
 
   // Update the size based on screen width
   const updateSize = () => {
@@ -64,30 +67,30 @@ export default function BannerSlide() {
   const slides = [
     {
       image:
-        'https://i.ibb.co.com/wWFkmL6/DALL-E-2024-11-21-20-32-00-A-visually-appealing-banner-image-for-a-winter-clothes-donation-drive-fea.webp',
-      title: 'Winter Clothing  Drive',
+        'https://i.ibb.co.com/wBCqJMd/DALL-E-2024-12-08-21-02-14-A-realistic-image-of-a-young-entrepreneur-launching-their-startup-The-sce.webp',
+      title: 'Launch Your Dream Startup',
       description:
-        'Join our mission to provide winter clothing to those in need. With your donation, we can bring warmth to many and make this winter a little more bearable for those struggling.',
+        'Start your journey today with innovative ideas and solutions that drive success.',
       content:
-        'Your contribution will help families stay warm during the harsh winter months. Whether it’s jackets, sweaters, or blankets, every donation counts. ',
+        "Empower your startup with the right tools and resources to grow. It's time to turn your vision into reality and make your mark in the industry.",
     },
     {
       image:
-        'https://i.ibb.co.com/FnNsJpd/DALL-E-2024-11-21-20-34-55-A-visually-engaging-banner-image-for-a-winter-clothing-donation-campaign.webp',
-      title: 'MAKE A DIFFERENCE',
+        'https://i.ibb.co.com/2nbwy7J/DALL-E-2024-12-08-21-26-00-A-visually-stunning-and-creative-banner-image-designed-to-showcase-innova.webp',
+      title: 'Unleash Your Creative Potential',
       description:
-        "Your donation helps provide warmth to those suffering from the cold. Every item counts in making someone's day better.",
+        'Transform your ideas into reality with innovation and imagination.',
       content:
-        "Make a difference by donating clothing to help provide warmth to those in need. Every item counts in brightening someone's day and making the winter more bearable.",
+        "Explore new ways to express your creativity. Whether it's art, design, or technology, we help bring your ideas to life.",
     },
     {
       image:
-        'https://i.ibb.co.com/vzk3mhh/DALL-E-2024-11-21-20-22-59-A-visually-striking-and-warm-themed-banner-featuring-winter-clothing-dona.webp',
-      title: 'GIVE WITH A PURPOSE',
+        'https://i.ibb.co.com/Jts89p6/DALL-E-2024-12-08-21-17-28-A-professional-and-modern-banner-image-for-a-business-focused-theme-The-d.webp',
+      title: 'Business Growth & Success',
       description:
-        'Help us spread kindness and generosity. Your donation provides much-needed support to individuals and families.',
+        'Grow your business with cutting-edge solutions and expert advice.',
       content:
-        'Give with purpose and support individuals and families in need with your generous donation of winter clothing. Your contribution provides much-needed support to those struggling in the cold.',
+        'Maximize your potential by learning the latest business strategies and tools that drive growth. Start scaling your business with us.',
     },
   ];
 
@@ -113,7 +116,13 @@ export default function BannerSlide() {
         pagination={{
           clickable: true,
         }}
-        onSlideChange={swiper => setActiveIndex(swiper.activeIndex)} // Update active index on slide change
+        onSlideChange={swiper => {
+          setActiveIndex(swiper.activeIndex); // Update active index on slide change
+          if (typewriterRef.current) {
+            typewriterRef.current.stop(); // Stop typewriter animation
+            typewriterRef.current.start(); // Restart the animation
+          }
+        }} // Reset typewriter effect on slide change
         modules={[EffectFade, Navigation, Pagination, Autoplay]} // Add Autoplay module
         className="mySwiper"
       >
@@ -122,16 +131,25 @@ export default function BannerSlide() {
           <SwiperSlide key={index}>
             <div className="relative cursor-pointer rounded-2xl overflow-hidden">
               <img
-                className="rounded-2xl h-[550px] w-full object-cover backdrop-blur-md bg-black/10 z-10 "
+                className="rounded-2xl h-[550px] w-full object-cover backdrop-blur-md bg-black/10 z-10"
                 src={slide.image}
                 alt={`Slide ${index + 1}`}
               />
               <div
                 data-aos="fade-right"
-                className="absolute w-11/12 lg:w-1/2 top-10  lg:top-16 xl:top-36 left-5 lg:left-12  text-white z-10 backdrop-blur-sm bg-black/30 p-6 rounded-lg"
+                className="absolute w-11/12 lg:w-1/2 top-10 lg:top-16 xl:top-36 left-5 lg:left-12 text-yellow-500 z-10 backdrop-blur-sm bg-black/30 p-6 rounded-lg"
               >
                 <h1 className="text-3xl lg:text-5xl font-extrabold">
-                  {slide.title}
+                  <Typewriter
+                    ref={typewriterRef} // Add ref for controlling typewriter
+                    cursor
+                    cursorBlinking
+                    delaySpeed={1000}
+                    deleteSpeed={25}
+                    loop={50}
+                    typeSpeed={50} // Adjust type speed to match with slider change timing
+                    words={[slide.title]} // Make the title dynamic
+                  />
                 </h1>
                 <p className="mt-4 text-sm lg:text-lg text-gray-300">
                   {slide.description}
@@ -140,10 +158,15 @@ export default function BannerSlide() {
                   {slide.content}
                 </p>
                 <a href="#featured-campaigns">
-                  <button className=" mt-3 rounded-lg px-4 py-3 border-2 bg-blue-300 border-blue-300 hover:border-black transition duration-300 hover:scale-90 text-sm lg:text-lg text-gray-700 hover:text-black font-semibold hover:bg-blue-200">
+                  <button className="mt-3 rounded-lg px-4 py-3 border-2 bg-yellow-300 border-yellow-300 hover:border-black transition duration-300 hover:scale-90 text-sm lg:text-lg text-black font-bold hover:bg-yellow-200">
                     Donate Now
                   </button>
                 </a>
+                <NavLink to={'/addCampaign'}>
+                  <button className="ml-4 mt-3 rounded-lg px-4 py-3 border-2 border-yellow-300 hover:border-black transition duration-300 hover:scale-90 text-sm lg:text-lg text-white hover:text-black font-bold hover:bg-yellow-200">
+                    Add Campaign
+                  </button>
+                </NavLink>
               </div>
             </div>
           </SwiperSlide>
@@ -152,7 +175,7 @@ export default function BannerSlide() {
 
       {/* Profile images overlay - Positioned at bottom-right using flexbox */}
       <div
-        className="absolute flex space-x-3 bottom-20 right-16 md:right-20 z-20 animate__pulse"
+        className="absolute flex space-x-3 bottom-20 right-16 md:right-20 z-20 animate__pulse backdrop-blur-sm p-4 rounded-xl border-yellow-500 border-2 -mr-4 "
         style={{ transform: 'translateY(50%)' }}
       >
         {slides.map((slide, index) => (
@@ -160,7 +183,7 @@ export default function BannerSlide() {
             key={index}
             onClick={() => handleOverlayClick(slide.image, index)} // Change background and slide on overlay click
             className={`cursor-pointer rounded-3xl border-t-8 border-l-8 border-b-4 ${
-              activeIndex === index ? 'border-teal-400' : 'border-transparent'
+              activeIndex === index ? 'border-yellow-400' : 'border-transparent'
             }`}
             style={{
               transition: 'all 0.3s ease',

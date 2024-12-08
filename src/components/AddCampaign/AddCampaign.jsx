@@ -77,7 +77,7 @@ const AddCampaign = () => {
 
   return (
     <div
-      className="max-w-3xl mx-auto p-8 bg-white shadow-lg rounded-lg animate__animated animate__fadeIn"
+      className="max-w-3xl a mx-auto p-8 bg-white shadow-lg rounded-lg animate__animated animate__fadeIn"
       data-aos="zoom-in"
     >
       <h2 className="text-3xl font-bold mb-8 text-center text-gray-800">
