@@ -5,3 +5,14 @@
 .marquee-pause {
   animation-play-state: paused !important;
 }
+
+/* Add to your CSS file or in a <style> tag */
+.bg-gradient-4dir {
+  background: linear-gradient(
+    135deg,
+    #022d23 0%,
+    #9f8210 50%,
+    #1f2937 50%,
+    #2dd4bf 100%
+  );
+}

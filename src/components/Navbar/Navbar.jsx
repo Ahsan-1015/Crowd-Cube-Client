@@ -137,14 +137,14 @@ const Navbar = () => {
               {/* Login/Register Buttons */}
               <NavLink
                 to="/login"
-                className="btn bg-gradient-to-r from-blue-400 via-blue-300 to-yellow-300 shadow-lg hover:shadow-xl transition-all duration-300 pointer-events-auto"
+                className="btn bg-gradient-to-r from-teal-400  to-blue-300 shadow-lg hover:shadow-xl transition-all duration-300 pointer-events-auto"
               >
                 <HiOutlineLogin className="text-white" />
                 <span className="ml-2 text-white font-semibold">Login</span>
               </NavLink>
               <NavLink
                 to="/register"
-                className="btn bg-gradient-to-r from-green-400 to-green-300 shadow-lg hover:shadow-xl transition-all duration-300"
+                className="btn bg-gradient-to-r from-teal-400 to-yellow-300 shadow-lg hover:shadow-xl transition-all duration-300"
               >
                 <span className="text-white font-semibold">Register</span>
               </NavLink>

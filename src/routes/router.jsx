@@ -54,17 +54,6 @@ const router = createBrowserRouter([
         },
       },
 
-      // {
-      //   path: '/how-it-works',
-      //   element: (
-      //     <>
-      //       <Helmet>
-      //         <title>How it works || Winter Clothing Donation</title>
-      //       </Helmet>
-      //       <HowItWorks />
-      //     </>
-      //   ),
-      // },
       {
         path: '/campaigns/:id',
         element: (

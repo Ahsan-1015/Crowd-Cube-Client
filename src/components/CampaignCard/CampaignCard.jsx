@@ -75,7 +75,7 @@ const CampaignCard = ({ campaign }) => {
               Deadline: {deadline}
             </span>
           </div>
-          <h1 className="text-lg text-gray-600">
+          <h1 className="text-lg text-gray-600 dark:text-white">
             <strong>Min Donation: </strong>
             {minDonation}
           </h1>

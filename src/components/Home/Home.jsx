@@ -51,7 +51,7 @@ const Home = () => {
       >
         <h2
           id="featured-campaigns"
-          className="text-center md:text-left text-3xl md:text-4xl font-bold mt-12"
+          className="text-center dark:text-white md:text-left text-3xl md:text-4xl font-bold mt-12"
         >
           Running Campaign Section _
         </h2>

@@ -120,7 +120,7 @@ const MyCampaign = () => {
   };
 
   return (
-    <div className="mx-auto bg-white rounded">
+    <div className="mx-auto  rounded">
       <h2 className="text-2xl lg:text-4xl font-bold mb-6 text-center">
         My Campaigns
       </h2>
@@ -131,7 +131,7 @@ const MyCampaign = () => {
           {campaigns.map(campaign => (
             <div
               key={campaign._id}
-              className="flex p-4 md:p-0 border border-yellow-600 lg:h-80 flex-col md:flex-row items-center bg-gray-100 rounded-lg shadow-lg overflow-hidden gap-6"
+              className="flex p-4 md:p-0 border border-yellow-600 lg:h-80 flex-col md:flex-row items-center bg-gray-100 dark:bg-gradient-to-r from-gray-700 via-gray-800  to-blue-200 rounded-lg shadow-lg dark:text-white overflow-hidden gap-6"
               data-aos="fade-up"
             >
               {/* Left: Image */}
@@ -144,15 +144,17 @@ const MyCampaign = () => {
               </div>
 
               {/* Right: Information & Actions */}
-              <div className="flex-1 text-lg">
-                <h3 className="text-xl font-semibold mb-2">{campaign.title}</h3>
-                <p className="text-gray-600 mb-1">
+              <div className="flex-1 text-lg dark:text-white">
+                <h3 className="text-xl font-semibold mb-2 ">
+                  {campaign.title}
+                </h3>
+                <p className="text-gray-600 mb-1 dark:text-white">
                   <strong>Type:</strong> {campaign.type || 'N/A'}
                 </p>
-                <p className="text-gray-600 mb-1">
+                <p className="text-gray-600 mb-1 dark:text-white">
                   <strong>Min Donation:</strong> ${campaign.minDonation}
                 </p>
-                <p className="text-gray-600 mb-4">
+                <p className="text-gray-600 mb-4 dark:text-white">
                   <strong>Deadline:</strong> {campaign.deadline}
                 </p>
                 <div className="flex space-x-3">
